@@ -1,8 +1,6 @@
 package com.example.jsonparse;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -15,7 +13,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.button.MaterialButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,19 +39,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+
                     response.getString("title");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
 
                     imageView.setVideoURI(Uri.parse(image_url));
-                    imageView.start();
-                    imageView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mediaPlayer) {
-
-                        }
-                    });
                     imagetitle.setText(imagename);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
