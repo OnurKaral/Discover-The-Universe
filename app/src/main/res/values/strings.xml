@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JsonParse</string>
+    <string name="apod">APOD</string>
 </resources>

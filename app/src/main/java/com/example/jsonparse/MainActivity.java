@@ -5,21 +5,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private TextView imagetitle;
     private RequestQueue requestQueue;
-    private VideoView imageView;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void jsonParse() {
-        String url= "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+        String url= "https://api.nasa.gov/planetary/apod?date=2019-04-25&api_key=DEMO_KEY";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
 
-                    imageView.setVideoURI(Uri.parse(image_url));
                     imagetitle.setText(imagename);
-
+                    Picasso.get().load(image_url).fit().centerInside().into(imageView);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
