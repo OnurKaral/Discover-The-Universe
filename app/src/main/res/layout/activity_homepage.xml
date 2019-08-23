@@ -1,68 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".Homepage">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-
-        android:minHeight="175dp">
-
-    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card2"
-        android:layout_below="@id/card1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="175dp">
+        android:id="@+id/ASTEROID"
+        android:clickable="true"
+        android:layout_width="390dp"
+        android:layout_marginBottom="410dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        >
 
-    </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card3"
-        android:layout_below="@id/card2"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/mtrl_card_spacing"
-    android:layout_marginTop="@dimen/mtrl_card_spacing"
-    android:layout_marginRight="@dimen/mtrl_card_spacing"
-    android:minHeight="175dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ASTEROİD"
+            android:textSize="60dp"
+            android:gravity="center"
+            android:textColor="#6200ee">
+        </TextView>
 
 </com.google.android.material.card.MaterialCardView>
 
+
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card4"
-        android:layout_below="@id/card3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/mtrl_card_spacing"
-    android:layout_marginTop="@dimen/mtrl_card_spacing"
-    android:layout_marginRight="@dimen/mtrl_card_spacing"
-    android:minHeight="180dp"
-        android:layout_marginBottom="5dp">
+        android:id="@+id/epicbutton"
+        android:layout_width="192dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="80dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp">
 
-</com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="EPIC"
+            android:textSize="60dp"
+            android:gravity="center"
+            android:textColor="#6200ee">
+        </TextView>
 
-    </RelativeLayout>
-    </ScrollView>
-</RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="186dp"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="200dp"
+        android:layout_marginBottom="80dp"
+        >
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

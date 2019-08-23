@@ -1,8 +1,6 @@
 package com.example.jsonparse;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -17,43 +15,54 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView imagetitle;
     private RequestQueue requestQueue;
     private ImageView imageView;
-    private Button buttonhomepage;
+    private MaterialButton homepagebutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+    imagetitle = findViewById(R.id.image_name);
+    imageView = findViewById(R.id.image_view);
+    homepagebutton = findViewById(R.id.button1);
 
-        buttonhomepage = findViewById(R.id.anasayfa);
-        imagetitle = findViewById(R.id.image_name);
-        imageView =   findViewById(R.id.image_view);
+    homepagebutton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(MainActivity.this,Homepage.class);
+            startActivity(intent);
+        }
+    });
 
-        buttonhomepage.setOnClickListener(new View.OnClickListener() {
+        imagetitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Homepage.class);
+                Intent intent = new Intent(MainActivity.this,APODinfo.class);
                 startActivity(intent);
             }
         });
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,APODinfo.class);
+                startActivity(intent);
+            }
+        });
     requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
-
-
-
 
     private void jsonParse() {
         String url= "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
@@ -80,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
     }
-
-
 }
 
 

@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context=".MainActivity">
 
   <ImageView
       android:id="@+id/image_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_marginBottom="3dp"
-      android:layout_marginTop="52dp"
+      android:layout_marginTop="50dp"
       android:layout_above="@+id/image_name"
       android:contentDescription="TODO"
-      android:clickable="true"/>
+      android:layout_marginLeft="1dp"
+      android:layout_marginRight="1dp" />
 
+  <com.google.android.material.button.MaterialButton
+      style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="10dp"
+      android:text="@string/apod"
+      android:textSize="24dp"
+      android:id="@+id/button1"
+      android:textColor="#6200ee" />
 
   <TextView
       android:id="@+id/image_name"
@@ -24,19 +38,8 @@
       android:layout_alignParentBottom="true"
       android:layout_marginBottom="7dp"
       android:textColor="#6200ee"
-      android:textSize="16dp"
-      android:clickable="true"/>
+      android:textSize="16dp" />
 
-  <com.google.android.material.button.MaterialButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="7dp"
-      android:id="@+id/anasayfa"
-      android:textColor="#6200ee"
-      android:textSize="18sp"
-      android:text="APOD"
-      android:backgroundTint="#FFFFFF"/>
 
 
 

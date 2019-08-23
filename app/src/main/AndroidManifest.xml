@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Homepage"></activity>
+        <activity android:name=".EPIC"></activity>
+        <activity android:name=".ASTEROID" />
+        <activity android:name=".APODinfo" />
+        <activity android:name=".Homepage" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
