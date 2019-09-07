@@ -37,13 +37,7 @@ public class MainActivity extends AppCompatActivity {
     imageView = findViewById(R.id.image_view);
     homepagebutton = findViewById(R.id.button1);
 
-    homepagebutton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this,Homepage.class);
-            startActivity(intent);
-        }
-    });
+
 
         imagetitle.setOnClickListener(new View.OnClickListener() {
             @Override
