@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView imagetitle;
     private RequestQueue requestQueue;
     private ImageView imageView;
+    private ImageView imageView2;
     private MaterialButton homepagebutton;
 
     @Override
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     imagetitle = findViewById(R.id.image_name);
     imageView = findViewById(R.id.image_view);
     homepagebutton = findViewById(R.id.button1);
+    imageView2 =findViewById(R.id.widgetapp3);
 
 
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                     imagetitle.setText(imagename);
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
+                   // Picasso.get().load(image_url).fit().centerInside().into(imageView2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
