@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
+
 
     private void jsonParse() {
         String url= "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
