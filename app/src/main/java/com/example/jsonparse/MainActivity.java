@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     imagetitle = findViewById(R.id.image_name);
     imageView = findViewById(R.id.image_view);
     homepagebutton = findViewById(R.id.button1);
-    imageView2 =findViewById(R.id.widgetapp3);
+
 
 
 
