@@ -1,9 +1,9 @@
 package com.example.jsonparse;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -11,7 +11,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,13 +24,12 @@ public class APODinfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apodinfo);
 
-
         textView = findViewById(R.id.text1);
         requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
     private void jsonParse() {
-        String url= "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+        String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -39,7 +37,6 @@ public class APODinfo extends AppCompatActivity {
 
                     response.getString("explanation");
                     String imageinfo = response.getString("explanation");
-
 
                     textView.setText(imageinfo);
 

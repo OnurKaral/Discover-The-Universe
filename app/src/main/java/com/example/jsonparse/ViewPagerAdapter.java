@@ -13,10 +13,10 @@ import androidx.viewpager.widget.PagerAdapter;
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
-    Context mContext ;
-    List<ScreenItem> ListScreen;
+    private Context mContext ;
+    private List<ScreenItem> ListScreen;
 
-    public ViewPagerAdapter(Context mContext, List<ScreenItem> listScreen) {
+    ViewPagerAdapter(Context mContext, List<ScreenItem> listScreen) {
         this.mContext = mContext;
         ListScreen = listScreen;
     }
@@ -24,6 +24,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
+
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layoutScreen = inflater.inflate(R.layout.layout_screen,null);
         ImageView imgSlide = layoutScreen.findViewById(R.id.intro_img);
@@ -36,7 +37,6 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         container.addView(layoutScreen);
         return layoutScreen;
-
 
     }
 

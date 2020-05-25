@@ -2,10 +2,11 @@ package com.example.jsonparse;
 
 public class ScreenItem {
 
-    String Title,Description;
-    int ScreenImg;
+    private String Title;
+    private String Description;
+    private int ScreenImg;
 
-    public ScreenItem(String title, String description, int screenImg) {
+    ScreenItem(String title, String description, int screenImg) {
         Title = title;
         Description = description;
         ScreenImg = screenImg;
@@ -23,15 +24,15 @@ public class ScreenItem {
         ScreenImg = screenImg;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return Title;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return Description;
     }
 
-    public int getScreenImg() {
+    int getScreenImg() {
         return ScreenImg;
     }
 }

@@ -1,14 +1,13 @@
 package com.example.jsonparse;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,8 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
-import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -39,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
     imageView = findViewById(R.id.image_view);
     homepagebutton = findViewById(R.id.button1);
 
-
-
-
         imagetitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,9 +55,8 @@ public class MainActivity extends AppCompatActivity {
         jsonParse();
     }
 
-
     private void jsonParse() {
-        String url= "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+        String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -75,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                     imagetitle.setText(imagename);
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
-                   // Picasso.get().load(image_url).fit().centerInside().into(imageView2);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

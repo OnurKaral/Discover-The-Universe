@@ -1,16 +1,13 @@
 package com.example.jsonparse;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
@@ -21,10 +18,10 @@ import java.util.List;
 public class StartingActivity extends AppCompatActivity {
 
     private ViewPager screenPager;
-    ViewPagerAdapter intropageradapter;
-    TabLayout tabIndicator;
-    Button button;
-    MaterialButton button2;
+    private ViewPagerAdapter viewPagerAdapter;
+    private TabLayout tabIndicator;
+    private MaterialButton button_next;
+    private MaterialButton button_start;
     int position =0;
     TextView tvSkip;
 
@@ -36,31 +33,25 @@ public class StartingActivity extends AppCompatActivity {
             Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
             startActivity(mainActivity);
             finish();
-
-
         }
-
-
         setContentView(R.layout.activity_starting);
 
-
-        button =findViewById(R.id.btn_next);
-        button2=findViewById(R.id.btn_get_started);
+        button_next =findViewById(R.id.btn_next);
+        button_start=findViewById(R.id.btn_get_started);
         tabIndicator=findViewById(R.id.tab_indicator);
-
+        //**********************
+        //List
         final List<ScreenItem> mList = new ArrayList<>();
         mList.add(new ScreenItem("First","TEST",R.drawable.img1));
         mList.add(new ScreenItem("Two","TEST",R.drawable.img2));
-        mList.add(new ScreenItem("Three","TEST",R.drawable.img3));
 
-
-
+        //**********************
         screenPager =findViewById(R.id.screen_viewpager);
-        intropageradapter = new ViewPagerAdapter(this,mList);
-        screenPager.setAdapter(intropageradapter);
+        viewPagerAdapter = new ViewPagerAdapter(this,mList);
+        screenPager.setAdapter(viewPagerAdapter);
         tvSkip = findViewById(R.id.tv_skip);
         tabIndicator.setupWithViewPager(screenPager);
-        button.setOnClickListener(new View.OnClickListener() {
+        button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -82,19 +73,15 @@ public class StartingActivity extends AppCompatActivity {
                     loadLastScreen();
                 }
             }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
@@ -110,18 +97,13 @@ public class StartingActivity extends AppCompatActivity {
                 screenPager.setCurrentItem(mList.size());
             }
         });
-
     }
     private boolean restorePrefData() {
-
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpened",false);
-        return  isIntroActivityOpnendBefore;
-
-
-
+        Boolean isIntroActivityOpenedBefore = pref.getBoolean("isIntroOpened",false);
+        return  isIntroActivityOpenedBefore;
     }
+
     private void savePrefsData() {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
@@ -129,11 +111,10 @@ public class StartingActivity extends AppCompatActivity {
         editor.putBoolean("isIntroOpened",true);
         editor.commit();
 
-
     }
     private void loadLastScreen() {
-        button.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.VISIBLE);
+        button_next.setVisibility(View.INVISIBLE);
+        button_start.setVisibility(View.VISIBLE);
         tabIndicator.setVisibility(View.INVISIBLE);
     }
 }
