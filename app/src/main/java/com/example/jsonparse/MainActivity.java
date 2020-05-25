@@ -1,8 +1,6 @@
 package com.example.jsonparse;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +12,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -24,48 +21,38 @@ public class MainActivity extends AppCompatActivity {
     private TextView imagetitle;
     private RequestQueue requestQueue;
     private ImageView imageView;
-    private ImageView imageView2;
-    private MaterialButton homepagebutton;
+    private TextView imageinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    imagetitle = findViewById(R.id.image_name);
+    imagetitle = findViewById(R.id.titletv);
     imageView = findViewById(R.id.image_view);
-    homepagebutton = findViewById(R.id.button1);
+    imageinfo = findViewById(R.id.infotv);
 
-        imagetitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,APODinfo.class);
-                startActivity(intent);
-            }
-        });
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,APODinfo.class);
-                startActivity(intent);
-            }
-        });
     requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
 
     private void jsonParse() {
-        String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
+      String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
+     //   String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=2020-05-15";
+
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
 
                     response.getString("title");
+                    response.getString("explanation");
+
+                    String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
 
+                    imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
                 } catch (JSONException e) {
