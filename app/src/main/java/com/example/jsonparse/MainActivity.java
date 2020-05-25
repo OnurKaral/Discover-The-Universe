@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     imagetitle = findViewById(R.id.titletv);
     imageView = findViewById(R.id.image_view);
     imageinfo = findViewById(R.id.infotv);
-
     requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
