@@ -37,6 +37,51 @@
 
   </TextView>
 
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/infotv"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="2dp"
+      android:id="@+id/datetv"
+      android:textColor="#1b1b1b"
+      android:textSize="12sp"
+      android:textStyle="bold">
+
+
+  </TextView>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/drawer_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <!-- Other components and views -->
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#6200ee"
+        app:fabAlignmentMode="end"
+        app:fabAnimationMode="slide"
+        app:navigationIcon="@drawable/ic_menu_black_24dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/cardview_dark_background"
+        app:layout_anchor="@id/bar" />
+
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

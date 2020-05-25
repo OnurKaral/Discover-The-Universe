@@ -1,6 +1,7 @@
 package com.example.jsonparse;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -22,15 +24,31 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private ImageView imageView;
     private TextView imageinfo;
+    private TextView imagedate;
+    private BottomAppBar bottomAppBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bottomAppBar = findViewById(R.id.bar);
+        setSupportActionBar(bottomAppBar);
+
+        bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BlankFragment fragment = new BlankFragment();
+                fragment.show(getSupportFragmentManager(),"TAG");
+            }
+        });
+
     imagetitle = findViewById(R.id.titletv);
     imageView = findViewById(R.id.image_view);
     imageinfo = findViewById(R.id.infotv);
+    imagedate = findViewById(R.id.datetv);
+
     requestQueue = Volley.newRequestQueue(this);
         jsonParse();
     }
@@ -46,11 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
                     response.getString("title");
                     response.getString("explanation");
+                    response.getString("date");
 
+                    String image_date = response.getString("date");
                     String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
 
+                    imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
@@ -66,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
     }
+
 }
 
 
