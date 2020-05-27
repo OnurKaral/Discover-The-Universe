@@ -1,14 +1,18 @@
 package com.example.jsonparse;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -38,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    String urldate ;
+    String urldate;
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
     @Override
@@ -56,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BlankFragment fragment = new BlankFragment();
-                fragment.show(getSupportFragmentManager(),"TAG");
+                fragment.show(getSupportFragmentManager(), "TAG");
             }
         });
-            imagetitle = findViewById(R.id.titletv);
-            imageView = findViewById(R.id.image_view);
-            imageinfo = findViewById(R.id.infotv);
-            imagedate = findViewById(R.id.datetv);
+        imagetitle = findViewById(R.id.titletv);
+        imageView = findViewById(R.id.image_view);
+        imageinfo = findViewById(R.id.infotv);
+        imagedate = findViewById(R.id.datetv);
 
         requestQueue = Volley.newRequestQueue(this);
         jsonParse();
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this,android.R.style.Theme_Holo_Light_Dialog_MinWidth,dateSetListener,year,month,day);
+                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
@@ -86,17 +90,17 @@ public class MainActivity extends AppCompatActivity {
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month =month+1;
+                month = month + 1;
                 String date = year + "-" + month + "-" + dayOfMonth;
-                urldate =date;
+                urldate = date;
                 jsonParse();
             }
         };
     }
 
-    private void jsonParse() {
-      //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
-        String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date="+urldate;
+    void jsonParse() {
+        //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
+        String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -126,6 +130,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(request);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sendbutton:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+                break;
+            case R.id.downloadbutton:
+                break;
+        }
+        return true;    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.bar_menu,menu);
+       return true;
     }
 }
 

@@ -11,4 +11,10 @@
 
     <string name="openNavDrawer">Navigation Drawer Open</string>
     <string name="closeNavDrawer">Navigation Drawer Close</string>
+    <string name="send">Send</string>
+    <string name="download">Download</string>
+    <string name="asteroids_neows">Asteroids - NeoWs</string>
+    <string name="epic">EPIC</string>
+    <string name="insight_mars_weather">InSight: Mars Weather</string>
+    <string name="mars_rover_photos">Mars Rover Photos</string>
 </resources>

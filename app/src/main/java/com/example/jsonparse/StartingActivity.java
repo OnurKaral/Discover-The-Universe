@@ -35,7 +35,6 @@ public class StartingActivity extends AppCompatActivity {
             finish();
         }
         setContentView(R.layout.activity_starting);
-
         button_next =findViewById(R.id.btn_next);
         button_start=findViewById(R.id.btn_get_started);
         tabIndicator=findViewById(R.id.tab_indicator);
