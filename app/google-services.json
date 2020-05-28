@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "904518607413",
+    "firebase_url": "https://nasa-apis-apod.firebaseio.com",
+    "project_id": "nasa-apis-apod",
+    "storage_bucket": "nasa-apis-apod.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904518607413:android:60c8121c95ff8347c7077c",
+        "android_client_info": {
+          "package_name": "com.example.APOD"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904518607413-mlscivf7v70b5t649tj0p0bg9gajvvhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMxFdPZkgbpmpFr9GcVIJiNBc6mkN-YaY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904518607413-mlscivf7v70b5t649tj0p0bg9gajvvhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
