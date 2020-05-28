@@ -1,19 +1,27 @@
 package com.example.jsonparse;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,10 +32,14 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -43,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     String urldate;
+    String fileUri;
+    private  String URL;
+    public static final int PERMISSION_WRITE = 0;
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
     @Override
@@ -69,7 +84,44 @@ public class MainActivity extends AppCompatActivity {
         imagedate = findViewById(R.id.datetv);
 
         requestQueue = Volley.newRequestQueue(this);
-        jsonParse();
+      //  jsonParse();
+
+
+        String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    response.getString("title");
+                    response.getString("explanation");
+                    response.getString("date");
+
+                    String image_date = response.getString("date");
+                    String image_info = response.getString("explanation");
+                    String imagename = response.getString("title");
+                    String image_url = response.getString("url");
+
+                    imagedate.setText(image_date);
+                    imageinfo.setText(image_info);
+                    imagetitle.setText(imagename);
+
+                    Picasso.get().load(image_url).fit().centerInside().into(imageView);
+                    URL = image_url;
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(request);
 
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -93,12 +145,64 @@ public class MainActivity extends AppCompatActivity {
                 month = month + 1;
                 String date = year + "-" + month + "-" + dayOfMonth;
                 urldate = date;
+
                 jsonParse();
             }
         };
     }
 
-    void jsonParse() {
+    public void DownloadImage(String url) {
+        Picasso.get().load(url).into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                try {
+                    File mydir = new File(Environment.getExternalStorageDirectory() +"");
+                    if (!mydir.exists()) {
+                        mydir.mkdirs();
+                    }
+
+                    fileUri = mydir.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
+                    FileOutputStream outputStream = new FileOutputStream(fileUri);
+
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+                    outputStream.flush();
+                    outputStream.close();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+                Toast.makeText(getApplicationContext(), "Image Downloaded", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+            }
+        });
+    }
+    //runtime storage permission
+    public boolean checkPermission() {
+        int READ_EXTERNAL_PERMISSION = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if((READ_EXTERNAL_PERMISSION != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_WRITE);
+            return true;
+        }
+        return true;
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode==PERMISSION_WRITE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //do somethings
+        }
+    }
+
+
+
+   public  void jsonParse() {
         //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
         String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -118,7 +222,9 @@ public class MainActivity extends AppCompatActivity {
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
+
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -131,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -145,6 +252,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(shareIntent);
                 break;
             case R.id.downloadbutton:
+                if (checkPermission()) {
+                    DownloadImage(URL);
+                    System.out.println(URL);
+                }
                 break;
         }
         return true;    }
