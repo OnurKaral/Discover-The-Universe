@@ -1,4 +1,4 @@
-package com.example.jsonparse;
+package com.example.jsonparse.OnboardingAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.jsonparse.R;
+
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private Context mContext ;
     private List<ScreenItem> ListScreen;
 
-    ViewPagerAdapter(Context mContext, List<ScreenItem> listScreen) {
+    public ViewPagerAdapter(Context mContext, List<ScreenItem> listScreen) {
         this.mContext = mContext;
         ListScreen = listScreen;
     }
@@ -34,10 +36,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         title.setText(ListScreen.get(position).getTitle());
         description.setText(ListScreen.get(position).getDescription());
         imgSlide.setImageResource(ListScreen.get(position).getScreenImg());
-
         container.addView(layoutScreen);
         return layoutScreen;
-
     }
 
     @Override

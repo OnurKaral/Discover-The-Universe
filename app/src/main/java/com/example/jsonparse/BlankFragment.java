@@ -30,7 +30,7 @@ public class BlankFragment extends BottomSheetDialogFragment {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-               //RESERVE
+               //RESERVE for BottomNavigationItems
 
                return false;
            }

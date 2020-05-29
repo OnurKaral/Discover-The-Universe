@@ -1,4 +1,4 @@
-package com.example.jsonparse;
+package com.example.jsonparse.OnboardingAdapters;
 
 public class ScreenItem {
 
@@ -6,7 +6,7 @@ public class ScreenItem {
     private String Description;
     private int ScreenImg;
 
-    ScreenItem(String title, String description, int screenImg) {
+    public ScreenItem(String title, String description, int screenImg) {
         Title = title;
         Description = description;
         ScreenImg = screenImg;

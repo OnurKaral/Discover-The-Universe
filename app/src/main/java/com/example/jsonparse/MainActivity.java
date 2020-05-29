@@ -54,16 +54,22 @@ public class MainActivity extends AppCompatActivity {
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    String urldate;
-    String fileUri;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
+
+    private String urldate;
+    private String fileUri;
     private  String URL;
     public static final int PERMISSION_WRITE = 0;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imagetitle = findViewById(R.id.titletv);
+        imageView = findViewById(R.id.image_view);
+        imageinfo = findViewById(R.id.infotv);
+        imagedate = findViewById(R.id.datetv);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -78,15 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 fragment.show(getSupportFragmentManager(), "TAG");
             }
         });
-        imagetitle = findViewById(R.id.titletv);
-        imageView = findViewById(R.id.image_view);
-        imageinfo = findViewById(R.id.infotv);
-        imagedate = findViewById(R.id.datetv);
 
         requestQueue = Volley.newRequestQueue(this);
       //  jsonParse();
 
-
+        // * Json Parse
         String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -109,8 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
                     URL = image_url;
 
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         });
         requestQueue.add(request);
 
+        //Select a date
         floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                 DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-
             }
         });
 
@@ -145,8 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 month = month + 1;
                 String date = year + "-" + month + "-" + dayOfMonth;
                 urldate = date;
-
-                jsonParse();
+                jsonParse();   // Refresh parse
             }
         };
     }
@@ -175,14 +174,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
             }
-
             @Override
             public void onPrepareLoad(Drawable placeHolderDrawable) {
             }
         });
     }
+
     //runtime storage permission
     public boolean checkPermission() {
         int READ_EXTERNAL_PERMISSION = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -200,9 +198,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-
-   public  void jsonParse() {
+    //***JsonParse!
+    public  void jsonParse() {
         //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
         String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -238,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-
+    //BottomAppbarNavigation
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -258,7 +255,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-        return true;    }
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

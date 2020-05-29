@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.jsonparse.OnboardingAdapters.ScreenItem;
+import com.example.jsonparse.OnboardingAdapters.ViewPagerAdapter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,28 +30,29 @@ public class StartingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //SharedPref
         if (restorePrefData()) {
-
             Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
             startActivity(mainActivity);
             finish();
         }
         setContentView(R.layout.activity_starting);
+
         button_next =findViewById(R.id.btn_next);
         button_start=findViewById(R.id.btn_get_started);
         tabIndicator=findViewById(R.id.tab_indicator);
-        //**********************
+
         //List
         final List<ScreenItem> mList = new ArrayList<>();
         mList.add(new ScreenItem("First","TEST",R.drawable.img1));
         mList.add(new ScreenItem("Two","TEST",R.drawable.img2));
 
-        //**********************
         screenPager =findViewById(R.id.screen_viewpager);
         viewPagerAdapter = new ViewPagerAdapter(this,mList);
         screenPager.setAdapter(viewPagerAdapter);
         tvSkip = findViewById(R.id.tv_skip);
         tabIndicator.setupWithViewPager(screenPager);
+
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +82,7 @@ public class StartingActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
+        //GetStarted
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
