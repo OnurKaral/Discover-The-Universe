@@ -1,5 +1,6 @@
 package com.example.jsonparse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -30,7 +31,15 @@ public class BlankFragment extends BottomSheetDialogFragment {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-               //RESERVE for BottomNavigationItems
+               //RESERVE
+               switch (item.getItemId()) {
+                   case R.id.asteroids_neows:
+                       Intent intent = new Intent(getActivity().getApplication(), asteroids_neows.class);
+                       startActivity(intent);
+                       break;
+                   case R.id.downloadbutton:
+
+               }
 
                return false;
            }

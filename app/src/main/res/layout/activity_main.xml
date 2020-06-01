@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="1000dp"
+    android:orientation="vertical" >
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="900dp">
+
+
 
   <ImageView
       android:id="@+id/image_view"
@@ -25,8 +36,8 @@
       android:textColor="#6200ee"
       android:textSize="16sp"
       android:textStyle="bold">
-
   </TextView>
+
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -35,7 +46,6 @@
       android:id="@+id/infotv"
       android:textColor="#1b1b1b"
       android:textSize="13sp">
-
   </TextView>
 
   <TextView
@@ -48,9 +58,14 @@
       android:textColor="#1b1b1b"
       android:textSize="12sp"
       android:textStyle="bold">
-
-
   </TextView>
+
+</RelativeLayout>
+
+
+
+</ScrollView>
+
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:id="@+id/drawer_layout"
@@ -62,12 +77,15 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         app:menu="@menu/bar_menu"
         android:id="@+id/bar"
+
         style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="#6200ee"
         app:fabAlignmentMode="end"
+        app:hideOnScroll="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
         app:fabAnimationMode="slide"
 
         app:navigationIcon="@drawable/ic_menu_black_24dp" />

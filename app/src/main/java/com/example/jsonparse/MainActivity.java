@@ -182,9 +182,9 @@ public class MainActivity extends AppCompatActivity {
             //do somethings
         }
     }
-*\
+/*
 
-     */
+            */
     //***JsonParse!
     public  void jsonParse() {
         //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(shareIntent);
                 break;
             case R.id.downloadbutton:
-
                 break;
         }
         return true;
@@ -246,6 +245,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.bar_menu,menu);
+
        return true;
     }
 }
