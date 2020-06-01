@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    /*
     public void DownloadImage(String url) {
         Picasso.get().load(url).into(new Target() {
             @Override
@@ -197,7 +198,9 @@ public class MainActivity extends AppCompatActivity {
             //do somethings
         }
     }
+*\
 
+     */
     //***JsonParse!
     public  void jsonParse() {
         //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
@@ -221,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
                     imagetitle.setText(imagename);
 
                     Picasso.get().load(image_url).fit().centerInside().into(imageView);
+                    URL = image_url;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -242,17 +246,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.sendbutton:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, URL);
                 sendIntent.setType("text/plain");
 
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
                 break;
             case R.id.downloadbutton:
-                if (checkPermission()) {
-                    DownloadImage(URL);
-                    System.out.println(URL);
-                }
+
                 break;
         }
         return true;
