@@ -2,8 +2,7 @@ package com.example.jsonparse;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +10,11 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,12 +24,14 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private TextView imagetitle;
     private RequestQueue requestQueue;
     private ImageView imageView;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
     private String urldate;
-    private String fileUri;
+    private String fieUri;
     private  String URL;
     public static final int PERMISSION_WRITE = 0;
 
@@ -59,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         urldate = dateFormat.format(calendar.getTime());
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
         bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -70,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         requestQueue = Volley.newRequestQueue(this);
-      //  jsonParse();
+        //  jsonParse();
 
         // * Json Parse
         String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
@@ -117,21 +130,10 @@ public class MainActivity extends AppCompatActivity {
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(MainActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener, year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                DialogFragment datepicker = new DatePickerFragment();
+                datepicker.show(getSupportFragmentManager(),"datepicker");
             }
         });
-
-        dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = year + "-" + month + "-" + dayOfMonth;
-                urldate = date;
-                jsonParse();   // Refresh parse
-            }
-        };
     }
 
     /*
@@ -182,9 +184,8 @@ public class MainActivity extends AppCompatActivity {
             //do somethings
         }
     }
-/*
+      */
 
-            */
     //***JsonParse!
     public  void jsonParse() {
         //String url= "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3";
@@ -193,7 +194,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-
                     response.getString("title");
                     response.getString("explanation");
                     response.getString("date");
@@ -245,8 +245,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.bar_menu,menu);
-
        return true;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        month = month + 1;
+        String date = year + "-" + month + "-" + dayOfMonth;
+        urldate = date;
+        jsonParse();   // Refresh parse
+
     }
 }
 
