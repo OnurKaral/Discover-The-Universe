@@ -27,6 +27,19 @@
         android:contentDescription="TODO"
          />
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="Click to Watch"
+        android:textAllCaps="false"
+        android:visibility="invisible"
+        android:id="@+id/mvideobutton">
+
+
+    </com.google.android.material.button.MaterialButton>
+
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

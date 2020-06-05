@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private TextView imagedate;
     private BottomAppBar bottomAppBar;
     private FloatingActionButton floatingActionButton;
+    private MaterialButton videobutton;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         imageView = findViewById(R.id.image_view);
         imageinfo = findViewById(R.id.infotv);
         imagedate = findViewById(R.id.datetv);
+        videobutton = findViewById(R.id.mvideobutton);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,17 +98,32 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     response.getString("title");
                     response.getString("explanation");
                     response.getString("date");
+                    response.getString("media_type");
 
                     String image_date = response.getString("date");
                     String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
+                    String image_type = response.getString("media_type");
 
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
 
                     Picasso.get().load(image_url).into(imageView);
+                    if(image_type.equals("video")){
+                        imageView.setVisibility(View.GONE);
+                        videobutton.setVisibility(View.VISIBLE);
+                        videobutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
+                            }
+                        });
+
+                    }
                     URL = image_url;
 
                 } catch (JSONException e) {
@@ -197,17 +215,35 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     response.getString("title");
                     response.getString("explanation");
                     response.getString("date");
+                    response.getString("media_type");
 
                     String image_date = response.getString("date");
                     String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
+                    String image_type = response.getString("media_type");
 
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
 
                     Picasso.get().load(image_url).into(imageView);
+                    imageView.setVisibility(View.VISIBLE);
+                    videobutton.setVisibility(View.INVISIBLE);
+
+                    if(image_type.equals("video")){
+                        imageView.setVisibility(View.GONE);
+                        videobutton.setVisibility(View.VISIBLE);
+                        videobutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
+                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                startActivity(intent);
+                            }
+                        });
+
+                    }
                     URL = image_url;
 
                 } catch (JSONException e) {
