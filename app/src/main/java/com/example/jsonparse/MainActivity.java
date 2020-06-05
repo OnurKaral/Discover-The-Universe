@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
 
-                    Picasso.get().load(image_url).fit().centerInside().into(imageView);
+                    Picasso.get().load(image_url).into(imageView);
                     URL = image_url;
 
                 } catch (JSONException e) {
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
 
-                    Picasso.get().load(image_url).fit().centerInside().into(imageView);
+                    Picasso.get().load(image_url).into(imageView);
                     URL = image_url;
 
                 } catch (JSONException e) {
