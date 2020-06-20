@@ -4,8 +4,8 @@ before_install:
   - chmod +x gradlew
   - yes | sdkmanager "platforms;android-30"
   - yes | sdkmanager "platforms;android-29"
-  - sdkmanager --update
-  - sdkmanager --licenses
+  - yes | sdkmanager --update
+  - yes | sdkmanager --licenses
 
 android:
   components:
