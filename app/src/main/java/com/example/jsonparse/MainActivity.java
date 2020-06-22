@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private SimpleDateFormat dateFormat;
     private String urldate;
     private String URL;
+    private String HDURL;
     private ProgressBar progressBar;
 
     @Override
@@ -68,14 +69,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         urldate = dateFormat.format(calendar.getTime());
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
 
         bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
@@ -87,9 +80,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse(HDURL); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
         requestQueue = Volley.newRequestQueue(this);
         jsonParse();
-
 
         //Select a date
         floatingActionButton = findViewById(R.id.fab);
@@ -118,16 +119,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     response.getString("explanation");
                     response.getString("date");
                     response.getString("media_type");
+                    response.getString("hdurl");
 
                     String image_date = response.getString("date");
                     String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
                     String image_type = response.getString("media_type");
+                    String image_hd_url = response.getString("hdurl");
 
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
+
 
                     Picasso.get().load(image_url).into(imageView, new Callback() {
                         @Override
@@ -158,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                     }
                     URL = image_url;
+                    HDURL = image_hd_url;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -174,7 +179,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
         requestQueue.add(request);
+
     }
+
 
     //BottomAppbarNavigation
     @Override
