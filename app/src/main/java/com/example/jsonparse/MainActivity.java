@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private String HDURL;
     private ProgressBar progressBar;
     private Uri bmpUri = null;
+    private String image_hd_url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
+                Uri uri = Uri.parse(HDURL); // missing 'http://' will cause crashed
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
@@ -126,14 +127,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     response.getString("explanation");
                     response.getString("date");
                     response.getString("media_type");
-                    /*
-                    if(response.getString("hdurl")!=null){
-                      response.getString("hdurl");
 
-                    }else{
-
+                    try {
+                        response.getString("hdurl");
+                        image_hd_url = response.getString("hdurl");
+                    } catch (Exception e) {
+                        System.out.println("error");
                     }
-                    String image_hd_url = response.getString("hdurl");  */
 
                     String image_date = response.getString("date");
                     String image_info = response.getString("explanation");
@@ -141,11 +141,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     String image_url = response.getString("url");
                     String image_type = response.getString("media_type");
 
-
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
-
 
                     Picasso.get().load(image_url).into(imageView, new Callback() {
                         @Override
@@ -177,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                     }
                     URL = image_url;
-
+                    HDURL = image_hd_url;
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -226,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.downloadbutton:
+
                 Uri bmpUri = getLocalBitmapUri(imageView);
                 Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
                 snackbar.setAnchorView(floatingActionButton);
