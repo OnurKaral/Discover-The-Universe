@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private ProgressBar progressBar;
     private Uri bmpUri = null;
     private String image_hd_url;
+    private String image_type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     String image_info = response.getString("explanation");
                     String imagename = response.getString("title");
                     String image_url = response.getString("url");
-                    String image_type = response.getString("media_type");
+                    image_type = response.getString("media_type");
 
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
@@ -224,11 +225,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.downloadbutton:
+                if (image_type.equals("video")) {
 
-                Uri bmpUri = getLocalBitmapUri(imageView);
-                Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
-                snackbar.setAnchorView(floatingActionButton);
-                snackbar.show();
+                } else {
+                    Uri bmpUri = getLocalBitmapUri(imageView);
+                    Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
+                    snackbar.setAnchorView(floatingActionButton);
+                    snackbar.show();
+                }
                 break;
             case R.id.sendbutton: /*
 
