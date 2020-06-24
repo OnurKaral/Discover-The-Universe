@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private String URL;
     private String HDURL;
     private ProgressBar progressBar;
-    private Uri bmpUri = null;
     private String image_hd_url;
     private String image_type;
     @Override
@@ -205,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             return null;
         }
         // Store image to default external storage directory
-
+        Uri bmpUri = null;
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS), "share_image_" + System.currentTimeMillis() + ".png");
@@ -214,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.close();
             bmpUri = Uri.fromFile(file);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -226,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         switch (item.getItemId()) {
             case R.id.downloadbutton:
                 if (image_type.equals("video")) {
-
                 } else {
                     Uri bmpUri = getLocalBitmapUri(imageView);
                     Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
@@ -234,17 +233,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     snackbar.show();
                 }
                 break;
-            case R.id.sendbutton: /*
-
-                // Construct a ShareIntent with link to image
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                Uri screenshotUri = getLocalBitmapUri(imageView);
-                shareIntent.setType("image/*");
-                shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-                // Launch sharing dialog for image
-                startActivity(Intent.createChooser(shareIntent, "Share Image"));
-                break;
-                */
+            case R.id.sendbutton:/*
+               Uri bmpUri = getLocalBitmapUri(imageView);
+                if (bmpUri != null) {
+                    // Construct a ShareIntent with link to image
+                    Intent shareIntent = new Intent();
+                    shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                    shareIntent.setType("image/*");
+                    // Launch sharing dialog for image
+                    startActivity(Intent.createChooser(shareIntent, "Share Image"));
+                } else {
+                    // ...sharing failed, handle error
+                }
+                break; */
         }
         return true;
     }
