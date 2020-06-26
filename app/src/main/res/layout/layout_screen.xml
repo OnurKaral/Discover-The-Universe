@@ -26,27 +26,6 @@
             tools:srcCompat="@tools:sample/avatars" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animation2"
-            app:lottie_repeatMode="reverse" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animation" />
-
     </RelativeLayout>
 
     <TextView
