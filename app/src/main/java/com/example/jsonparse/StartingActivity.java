@@ -24,6 +24,7 @@ public class StartingActivity extends AppCompatActivity {
     private TabLayout tabIndicator;
     private MaterialButton button_next;
     private MaterialButton button_start;
+
     int position =0;
     TextView tvSkip;
 
@@ -38,17 +39,17 @@ public class StartingActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_starting);
 
-        button_next =findViewById(R.id.btn_next);
-        button_start=findViewById(R.id.btn_get_started);
-        tabIndicator=findViewById(R.id.tab_indicator);
+        button_next = findViewById(R.id.btn_next);
+        button_start = findViewById(R.id.btn_get_started);
+        tabIndicator = findViewById(R.id.tab_indicator);
 
         //List
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("First","TEST",R.drawable.img5));
-        mList.add(new ScreenItem("Two","TEST",R.drawable.img2));
+        mList.add(new ScreenItem("Title", "description here...", R.drawable.img5));
+        mList.add(new ScreenItem("Title", "description here...", R.drawable.img2));
 
-        screenPager =findViewById(R.id.screen_viewpager);
-        viewPagerAdapter = new ViewPagerAdapter(this,mList);
+        screenPager = findViewById(R.id.screen_viewpager);
+        viewPagerAdapter = new ViewPagerAdapter(this, mList);
         screenPager.setAdapter(viewPagerAdapter);
         tvSkip = findViewById(R.id.tv_skip);
         tabIndicator.setupWithViewPager(screenPager);
@@ -59,11 +60,14 @@ public class StartingActivity extends AppCompatActivity {
 
                 position= screenPager.getCurrentItem();
                 if (position< mList.size()){
+
                     position++;
                     screenPager.setCurrentItem(position);
+
                 }
                 if (position== mList.size()-1){
                     loadLastScreen();
+
                 }
             }
         });
@@ -74,13 +78,17 @@ public class StartingActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition()==mList.size()-1){
                     loadLastScreen();
+
                 }
+
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                loadfirstScreen();
             }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
         //GetStarted
@@ -97,7 +105,9 @@ public class StartingActivity extends AppCompatActivity {
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                screenPager.setCurrentItem(mList.size());
+
+                Intent intent = new Intent(StartingActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -111,13 +121,20 @@ public class StartingActivity extends AppCompatActivity {
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpened",true);
+        editor.putBoolean("isIntroOpened", true);
         editor.commit();
 
     }
+
     private void loadLastScreen() {
         button_next.setVisibility(View.INVISIBLE);
         button_start.setVisibility(View.VISIBLE);
         tabIndicator.setVisibility(View.INVISIBLE);
+    }
+
+    private void loadfirstScreen() {
+        button_next.setVisibility(View.VISIBLE);
+        button_start.setVisibility(View.INVISIBLE);
+        tabIndicator.setVisibility(View.VISIBLE);
     }
 }
