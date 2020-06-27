@@ -1,7 +1,11 @@
 package com.example.jsonparse;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,6 +22,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.Request;
@@ -43,6 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    private int STORAGE_PERMISSION_CODE = 1;
     private TextView imagetitle;
     private RequestQueue requestQueue;
     private ImageView imageView;
@@ -60,10 +67,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private ProgressBar progressBar;
     private String image_hd_url;
     private String image_type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
@@ -226,11 +235,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         switch (item.getItemId()) {
             case R.id.downloadbutton:
                 if (image_type.equals("video")) {
-                } else {
+                } else if (ContextCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
                     Uri bmpUri = getLocalBitmapUri(imageView);
                     Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
                     snackbar.setAnchorView(floatingActionButton);
                     snackbar.show();
+                } else {
+                    requestStoragePermission();
+
                 }
                 break;
             case R.id.sendbutton:/*
@@ -266,6 +280,40 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         progressBar.setVisibility(View.VISIBLE);
         jsonParse();   // Refresh parse
 
+    }
+
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission Needed")
+                    .setMessage("You should give the permission for Download an image")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    })
+                    .create().show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            }
+        }
     }
 }
 
