@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context="com.example.jsonparse.asteroids_neows">
+    tools:context="com.example.DiscoverTheUniverse.asteroids_neows">
 
     <TextView
         android:id="@+id/neowstitle"
