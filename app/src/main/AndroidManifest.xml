@@ -4,9 +4,7 @@
     package="com.example.DiscoverTheUniverse">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -16,21 +14,27 @@
         android:roundIcon="@mipmap/yeniicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+        android:fullBackupContent="@xml/backup_descriptor"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Info" />
+        <activity android:name=".EpicActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_name" />
 
-        <activity android:name="com.example.DiscoverTheUniverse.asteroids_neows"></activity>
-        <activity android:name="com.example.DiscoverTheUniverse.MainActivity" />
-        <activity android:name="com.example.DiscoverTheUniverse.StartingActivity">
+        <activity android:name=".asteroids_neows" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".StartingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

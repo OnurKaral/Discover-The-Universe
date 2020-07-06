@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Screens">
+    <item android:title="@string/screens">
         <menu>
-            <item android:title="@string/asteroids_neows"
+            <item
+                android:id="@+id/asteroids_neows"
                 android:icon="@drawable/ic_baseline_folder_24"
-                android:id="@+id/asteroids_neows"/>
-            <item android:title="@string/epic"
-                android:icon="@drawable/ic_baseline_people_24"
+                android:title="@string/asteroids_neows" />
+            <item
                 android:id="@+id/epic"
-                />
-            <item android:title="@string/insight_mars_weather"
+                android:icon="@drawable/ic_baseline_people_24"
+                android:title="@string/epic" />
+            <item
+                android:title="@string/insight_mars_weather"
                 android:icon="@drawable/ic_baseline_star_24"
                 android:id="@+id/insight_mars_weather" />
-            <item android:title="@string/mars_rover_photos"
+            <item
+                android:id="@+id/mars_rover_photos"
                 android:icon="@drawable/ic_baseline_access_time_24"
-                android:id="@+id/mars_rover_photos"/>
+                android:title="@string/mars_rover_photos" />
         </menu>
     </item>
 
-    <item android:title="APP">
+    <item android:title="@string/app">
         <menu>
             <item
-                android:title="Settings"
-                android:icon="@drawable/ic_baseline_settings_applications_24" />
+                android:id="@+id/settingpage"
+                android:icon="@drawable/ic_baseline_settings_applications_24"
+                android:title="@string/settings" />
             <item
+                android:id="@+id/infopage"
                 android:icon="@drawable/ic_baseline_power_settings_new_24"
-                android:title="Info" />
+                android:title="@string/info" />
         </menu>
     </item>
 
