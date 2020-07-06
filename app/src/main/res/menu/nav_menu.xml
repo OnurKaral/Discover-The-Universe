@@ -21,10 +21,12 @@
 
     <item android:title="APP">
         <menu>
-            <item android:title="Settings"
+            <item
+                android:title="Settings"
                 android:icon="@drawable/ic_baseline_settings_applications_24" />
-            <item android:title="Log Out"
-                android:icon="@drawable/ic_baseline_power_settings_new_24" />
+            <item
+                android:icon="@drawable/ic_baseline_power_settings_new_24"
+                android:title="Info" />
         </menu>
     </item>
 
