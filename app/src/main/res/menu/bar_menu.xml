@@ -5,12 +5,15 @@
     <item
         android:id="@+id/sendbutton"
         android:title="@string/send"
-        android:icon="@drawable/ic_send"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_share123"
+        android:tint="@android:color/white"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/downloadbutton"
+    <item
+        android:id="@+id/downloadbutton"
         android:title="@string/download"
-        android:icon="@drawable/ic_arrow"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_down_arrow"
+        android:tint="@android:color/white"
+        app:showAsAction="ifRoom" />
 
 </menu>

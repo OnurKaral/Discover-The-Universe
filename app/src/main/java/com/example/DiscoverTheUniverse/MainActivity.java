@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.Request;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private ProgressBar progressBar;
     private String image_hd_url;
     private String image_type;
+    private Uri bmpUri = null;
+    private MenuItem download;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                download.setEnabled(true);
                 try {
                     response.getString("title");
                     response.getString("explanation");
@@ -194,10 +199,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                download.setEnabled(false);
                 progressBar.setVisibility(View.INVISIBLE);
                 Snackbar snackbar = Snackbar.make(imagedate, "Unexpected response code 500", Snackbar.LENGTH_LONG);
                 snackbar.setAnchorView(floatingActionButton);
                 snackbar.show();
+
             }
         });
         requestQueue.add(request);
@@ -213,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             return null;
         }
         // Store image to default external storage directory
-        Uri bmpUri = null;
+
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
                     Environment.DIRECTORY_DOWNLOADS), "share_image_" + System.currentTimeMillis() + ".png");
@@ -221,7 +228,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             FileOutputStream out = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.close();
-            bmpUri = Uri.fromFile(file);
+            bmpUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", file);
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -238,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
-                    Uri bmpUri = getLocalBitmapUri(imageView);
+                    bmpUri = getLocalBitmapUri(imageView);
                     Snackbar snackbar = Snackbar.make(imagedate, "Image Downloaded.", Snackbar.LENGTH_LONG);
                     snackbar.setAnchorView(floatingActionButton);
                     snackbar.show();
@@ -247,8 +255,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 }
                 break;
-            case R.id.sendbutton:/*
-               Uri bmpUri = getLocalBitmapUri(imageView);
+            case R.id.sendbutton:
+                bmpUri = getLocalBitmapUri(imageView);
                 if (bmpUri != null) {
                     // Construct a ShareIntent with link to image
                     Intent shareIntent = new Intent();
@@ -260,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else {
                     // ...sharing failed, handle error
                 }
-                break; */
+                break;
         }
         return true;
     }
@@ -268,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bar_menu, menu);
+        download = (MenuItem) menu.findItem(R.id.downloadbutton);
         return true;
     }
 

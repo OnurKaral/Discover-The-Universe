@@ -23,6 +23,13 @@
         android:layout_height="match_parent"
         android:layout_marginTop="3dp" />
 
+    <ImageView
+
+        android:id="@+id/image_view2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:visibility="invisible" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -108,7 +115,7 @@
 
         style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         app:backgroundTint="#6200ee"
         app:fabAlignmentMode="end"
@@ -118,14 +125,14 @@
 
         app:navigationIcon="@drawable/ic_menu_black_24dp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
 
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/cardview_dark_background"
-        app:layout_anchor="@id/bar"
-        app:srcCompat="@drawable/ic_calendar" />
+      android:id="@+id/fab"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:backgroundTint="@color/cardview_light_background"
+      app:layout_anchor="@id/bar"
+      app:srcCompat="@drawable/ic_calendaryeni" />
 
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
