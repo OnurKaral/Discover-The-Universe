@@ -3,12 +3,15 @@ package com.example.DiscoverTheUniverse;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
         imageinfo = findViewById(R.id.infotv);
@@ -127,6 +129,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 DatePicker.show(getSupportFragmentManager(), "DatePicker");
             }
         });
+
+
     }
 
     //***JsonParse!
@@ -277,6 +281,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bar_menu, menu);
         download = (MenuItem) menu.findItem(R.id.downloadbutton);
+        if (isNetworkAvailable() == true) {
+            download.setEnabled(false);
+
+        }
         return true;
     }
 
@@ -324,6 +332,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         }
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
 }
 
 
