@@ -45,8 +45,8 @@ public class StartingActivity extends AppCompatActivity {
 
         //List
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Title", "description here...", R.drawable.img5));
-        mList.add(new ScreenItem("Title", "description here...", R.drawable.img2));
+        mList.add(new ScreenItem("Title", "description here...", R.drawable.nasaround));
+        mList.add(new ScreenItem("Title", "description here...", R.drawable.nasa_old));
 
         screenPager = findViewById(R.id.screen_viewpager);
         viewPagerAdapter = new ViewPagerAdapter(this, mList);
