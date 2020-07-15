@@ -37,12 +37,12 @@ public class BlankFragment extends BottomSheetDialogFragment {
                        Intent intent = new Intent(getActivity().getApplication(), asteroids_neows.class);
                        startActivity(intent);
                        break;
-                   case R.id.epic:
-                       /*
-                       Intent intent2 = new Intent(getActivity().getApplication(), EpicActivity.class);
+                   case R.id.profile:
+
+                       Intent intent2 = new Intent(getActivity().getApplication(), ProfileActivity.class);
                        startActivity(intent2);
 
-                        */
+
                        break;
                    case R.id.infopage:
                        Intent intent4 = new Intent(getActivity().getApplication(), Info.class);

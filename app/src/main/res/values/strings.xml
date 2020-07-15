@@ -2,6 +2,9 @@
     <string name="app_name">JsonParse</string>
     <string name="apod">APOD</string>
 
+    <string name="change_txt">Değiştir</string>
+    <string name="close_txt">Vazgeç</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
