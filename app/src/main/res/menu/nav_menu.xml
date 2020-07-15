@@ -19,15 +19,20 @@
                 android:id="@+id/mars_rover_photos"
                 android:icon="@drawable/ic_mars_rover"
                 android:title="@string/mars_rover_photos" />
+
+            <item
+                android:id="@+id/favorites"
+                android:icon="@drawable/ic_heart"
+                android:title="@string/favorites" />
         </menu>
     </item>
 
     <item android:title="@string/app">
         <menu>
             <item
-                android:id="@+id/settingpage"
-                android:icon="@drawable/ic_heart"
-                android:title="Favorites" />
+                android:id="@+id/profile"
+                android:icon="@drawable/ic_user"
+                android:title="@string/profile" />
             <item
                 android:id="@+id/infopage"
                 android:icon="@drawable/ic_info"
