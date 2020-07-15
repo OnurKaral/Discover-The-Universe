@@ -18,9 +18,6 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Info" />
         <activity android:name=".EpicActivity" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

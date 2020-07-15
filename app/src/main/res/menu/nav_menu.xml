@@ -5,19 +5,19 @@
         <menu>
             <item
                 android:id="@+id/asteroids_neows"
-                android:icon="@drawable/ic_baseline_folder_24"
+                android:icon="@drawable/ic_universe"
                 android:title="@string/asteroids_neows" />
             <item
                 android:id="@+id/epic"
-                android:icon="@drawable/ic_baseline_people_24"
+                android:icon="@drawable/ic_globe"
                 android:title="@string/epic" />
             <item
                 android:title="@string/insight_mars_weather"
-                android:icon="@drawable/ic_baseline_star_24"
+                android:icon="@drawable/ic_mars_rover"
                 android:id="@+id/insight_mars_weather" />
             <item
                 android:id="@+id/mars_rover_photos"
-                android:icon="@drawable/ic_baseline_access_time_24"
+                android:icon="@drawable/ic_mars_rover"
                 android:title="@string/mars_rover_photos" />
         </menu>
     </item>
@@ -26,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/settingpage"
-                android:icon="@drawable/ic_baseline_settings_applications_24"
-                android:title="@string/settings" />
+                android:icon="@drawable/ic_heart"
+                android:title="Favorites" />
             <item
                 android:id="@+id/infopage"
-                android:icon="@drawable/ic_baseline_power_settings_new_24"
+                android:icon="@drawable/ic_info"
                 android:title="@string/info" />
         </menu>
     </item>

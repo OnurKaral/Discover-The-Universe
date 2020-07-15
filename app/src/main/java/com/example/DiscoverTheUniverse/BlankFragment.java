@@ -38,12 +38,12 @@ public class BlankFragment extends BottomSheetDialogFragment {
                        startActivity(intent);
                        break;
                    case R.id.epic:
+                       /*
                        Intent intent2 = new Intent(getActivity().getApplication(), EpicActivity.class);
                        startActivity(intent2);
+
+                        */
                        break;
-                   case R.id.settingpage:
-                       Intent intent3 = new Intent(getActivity().getApplication(), SettingsActivity.class);
-                       startActivity(intent3);
                    case R.id.infopage:
                        Intent intent4 = new Intent(getActivity().getApplication(), Info.class);
                        startActivity(intent4);
