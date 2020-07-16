@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private String image_type;
     private Uri bmpUri = null;
     private MenuItem download;
+    private String imagetitlesend;
 
 
     @Override
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     imagedate.setText(image_date);
                     imageinfo.setText(image_info);
                     imagetitle.setText(imagename);
+                    imagetitlesend = imagename;
 
                     Picasso.get().load(image_url).into(imageView, new Callback() {
                         @Override
@@ -261,16 +263,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 break;
             case R.id.sendbutton:
                 bmpUri = getLocalBitmapUri(imageView);
-                if (bmpUri != null) {
+                if (bmpUri != null && ContextCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                     // Construct a ShareIntent with link to image
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, imagetitlesend);
                     shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
                     shareIntent.setType("image/*");
                     // Launch sharing dialog for image
                     startActivity(Intent.createChooser(shareIntent, "Share Image"));
                 } else {
                     // ...sharing failed, handle error
+                    requestStoragePermission();
                 }
                 break;
         }
