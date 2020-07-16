@@ -36,9 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        registerUserName = (EditText) findViewById(R.id.registerUserName);
-        registerPassword = (EditText) findViewById(R.id.registerPassword);
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        registerUserName = findViewById(R.id.registerUserName);
+        registerPassword = findViewById(R.id.registerPassword);
+        buttonRegister = findViewById(R.id.buttonRegister);
 
         mAuth = FirebaseAuth.getInstance();
         // Register Buton İşlemi
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                             databaseReference = FirebaseDatabase.getInstance().getReference("users/" + uId);
                             User user = new User(userName, uId);
                             databaseReference.setValue(user);
-                            Intent i = new Intent(RegisterActivity.this, ProfileActivity.class);
+                            Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(i);
                             finish();
                         } else {
