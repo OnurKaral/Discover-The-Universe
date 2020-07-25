@@ -35,9 +35,6 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private String str;
 
-    @Override
-    public void onBackPressed() {
-    }
 
     @Override
     public void onStart() {
@@ -209,6 +206,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         mAlertDialog.show();
     }
+
 }
 
 

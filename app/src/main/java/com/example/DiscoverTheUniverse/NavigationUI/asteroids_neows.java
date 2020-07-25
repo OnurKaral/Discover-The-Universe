@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.DiscoverTheUniverse.NavigationUI;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.DiscoverTheUniverse.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

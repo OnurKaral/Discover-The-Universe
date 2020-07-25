@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.DiscoverTheUniverse.NavigationUI;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.DiscoverTheUniverse.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Info extends AppCompatActivity {

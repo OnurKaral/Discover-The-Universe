@@ -36,10 +36,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.DiscoverTheUniverse.NavigationUI.BlankFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -74,6 +83,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private Uri bmpUri = null;
     private MenuItem download;
     private String imagetitlesend;
+    private String imagedatesend;
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabaseRef;
+    private FloatingActionButton addfavoritesbutton;
+    private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
+    private String uid;
+    private NetworkInfo activeNetwork;
 
 
     @Override
@@ -81,11 +98,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        uid = firebaseUser.getUid();
+
+        mStorageRef = FirebaseStorage.getInstance().getReference("favorites/");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+
+
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
         imageinfo = findViewById(R.id.infotv);
         imagedate = findViewById(R.id.datetv);
 
+        addfavoritesbutton = findViewById(R.id.addfavorites);
         videobutton = findViewById(R.id.mvideobutton);
         progressBar = findViewById(R.id.mprogressbar);
 
@@ -113,6 +140,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        addfavoritesbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addfavorites();
+            }
+        });
+
         requestQueue = Volley.newRequestQueue(this);
         jsonParse();
 
@@ -134,71 +168,87 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+
     //***JsonParse!
     public void jsonParse() {
         String url = "https://api.nasa.gov/planetary/apod?api_key=hhOItewgwlQmkaSH6xq7aZMpnLqCisxdUdomDfi3&date=" + urldate;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                download.setEnabled(true);
-                try {
-                    response.getString("title");
-                    response.getString("explanation");
-                    response.getString("date");
-                    response.getString("media_type");
+                if (isNetworkAvailable() == true) {
 
+
+                    download.setEnabled(true);
                     try {
-                        response.getString("hdurl");
-                        image_hd_url = response.getString("hdurl");
-                    } catch (Exception e) {
-                        System.out.println("error");
-                    }
+                        response.getString("title");
+                        response.getString("explanation");
+                        response.getString("date");
+                        response.getString("media_type");
 
-                    String image_date = response.getString("date");
-                    String image_info = response.getString("explanation");
-                    String imagename = response.getString("title");
-                    String image_url = response.getString("url");
-                    image_type = response.getString("media_type");
-
-                    imagedate.setText(image_date);
-                    imageinfo.setText(image_info);
-                    imagetitle.setText(imagename);
-                    imagetitlesend = imagename;
-
-                    Picasso.get().load(image_url).into(imageView, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            progressBar.setVisibility(View.INVISIBLE);
+                        try {
+                            response.getString("hdurl");
+                            image_hd_url = response.getString("hdurl");
+                        } catch (Exception e) {
+                            System.out.println("error");
                         }
 
-                        @Override
-                        public void onError(Exception e) {
-                        }
-                    });
+                        String image_date = response.getString("date");
+                        String image_info = response.getString("explanation");
+                        String imagename = response.getString("title");
+                        String image_url = response.getString("url");
+                        image_type = response.getString("media_type");
 
-                    imageView.setVisibility(View.VISIBLE);
-                    videobutton.setVisibility(View.INVISIBLE);
+                        imagedate.setText(image_date);
+                        imageinfo.setText(image_info);
+                        imagetitle.setText(imagename);
+                        imagetitlesend = imagename;
+                        imagedatesend = image_date;
 
-                    if (image_type.equals("video")) {
-                        HDURL = null;
-                        progressBar.setVisibility(View.INVISIBLE);
-                        imageView.setVisibility(View.GONE);
-                        videobutton.setVisibility(View.VISIBLE);
-                        videobutton.setOnClickListener(new View.OnClickListener() {
+                        Picasso.get().load(image_url).into(imageView, new Callback() {
                             @Override
-                            public void onClick(View v) {
-                                Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
-                                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                startActivity(intent);
+                            public void onSuccess() {
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
                             }
                         });
 
-                    }
-                    URL = image_url;
-                    HDURL = image_hd_url;
+                        imageView.setVisibility(View.VISIBLE);
+                        videobutton.setVisibility(View.INVISIBLE);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                        if (image_type.equals("video")) {
+                            download.setVisible(false);
+                            HDURL = null;
+                            progressBar.setVisibility(View.INVISIBLE);
+                            imageView.setVisibility(View.GONE);
+                            videobutton.setVisibility(View.VISIBLE);
+                            videobutton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Uri uri = Uri.parse(URL); // missing 'http://' will cause crashed
+                                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                    startActivity(intent);
+                                }
+                            });
+
+                        } else {
+                            download.setVisible(true);
+                        }
+                        URL = image_url;
+                        HDURL = image_hd_url;
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    Snackbar snackbar = Snackbar.make(imagedate, "No Connection", Snackbar.LENGTH_LONG);
+                    snackbar.setAnchorView(floatingActionButton);
+                    snackbar.show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -243,12 +293,41 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return bmpUri;
     }
 
+    private void addfavorites() {
+        bmpUri = getLocalBitmapUri(imageView);
+
+        if (bmpUri != null) {
+
+            final StorageReference fileReference = mStorageRef.child(bmpUri.getLastPathSegment());
+            UploadTask uploadTask = mStorageRef.child(uid).child(imagedatesend + " " + '"' + imagetitlesend + '"').putFile(bmpUri);
+
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    taskSnapshot.getMetadata();
+
+
+                    String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    String url3 = String.valueOf(mStorageRef.getDownloadUrl());
+                    User user = new User(uId, url3);
+                    mDatabaseRef.child("favorites").child(uId).child("images").setValue(user);
+
+
+                }
+            });
+        } else {
+        }
+
+    }
+
     //BottomAppbarNavigation
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.downloadbutton:
                 if (image_type.equals("video")) {
+
                 } else if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
 
@@ -273,6 +352,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     shareIntent.setType("image/*");
                     // Launch sharing dialog for image
                     startActivity(Intent.createChooser(shareIntent, "Share Image"));
+                } else if (image_type.equals("video")) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, URL);
+                    sendIntent.setType("text/plain");
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    startActivity(shareIntent);
                 } else {
                     // ...sharing failed, handle error
                     requestStoragePermission();
@@ -327,6 +413,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
 
         }
+    }
+
+    public void checkConnection() {
+
+        ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        activeNetwork = manager.getActiveNetworkInfo();
+
+
     }
 
     @Override

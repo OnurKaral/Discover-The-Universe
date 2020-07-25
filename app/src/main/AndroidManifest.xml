@@ -16,14 +16,14 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:fullBackupContent="@xml/backup_descriptor"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Info" />
-        <activity android:name=".EpicActivity" />
+        <activity android:name=".NavigationUI.Info" />
+        <activity android:name=".NavigationUI.EpicActivity" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_name" />
 
-        <activity android:name=".asteroids_neows" />
+        <activity android:name=".NavigationUI.asteroids_neows" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />

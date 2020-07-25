@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.DiscoverTheUniverse.Info">
+    tools:context="com.example.DiscoverTheUniverse.NavigationUI.Info">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bir"
@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@id/bir"
-        android:src="@drawable/ic_twitter"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/bir"
         app:backgroundTint="#FFFFFF"
+        android:src="@drawable/ic_twitter"
 
 
         >

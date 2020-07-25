@@ -33,11 +33,13 @@ public class LoginActivity extends AppCompatActivity {
     private String userName;
     private String userPassword;
 
+
     //****************************************************************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         editTextUserName = (EditText) findViewById(R.id.editTextUserName);
         editTextUserPassword = (EditText) findViewById(R.id.editTextUserPassword);
@@ -101,5 +103,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 });
     }
+
 }
 

@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.DiscoverTheUniverse.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.DiscoverTheUniverse.ProfileActivity;
+import com.example.DiscoverTheUniverse.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 /**
@@ -26,7 +28,7 @@ public class BlankFragment extends BottomSheetDialogFragment {
                              Bundle savedInstanceState) {
        View view = inflater.inflate(R.layout.fragment,container,false);
 
-       NavigationView navigationView =view.findViewById(R.id.navigationid);
+        final NavigationView navigationView = view.findViewById(R.id.navigationid);
        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
