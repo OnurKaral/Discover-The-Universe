@@ -9,13 +9,14 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/yeniicon"
         android:label="Discover The Universe"
         android:roundIcon="@mipmap/yeniicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
-        android:fullBackupContent="@xml/backup_descriptor"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".FavoritesActivity"></activity>
         <activity android:name=".NavigationUI.Info" />
         <activity android:name=".NavigationUI.EpicActivity" />
 
@@ -35,7 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <provider
             android:name="androidx.core.content.FileProvider"

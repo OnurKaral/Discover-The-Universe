@@ -307,18 +307,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                     taskSnapshot.getMetadata();
 
-
                     String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     String url3 = String.valueOf(mStorageRef.getDownloadUrl());
                     User user = new User(uId, url3);
                     mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
 
-
+                
                 }
             });
-        } else {
         }
-
     }
 
     //BottomAppbarNavigation
