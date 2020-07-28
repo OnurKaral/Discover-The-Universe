@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     String url3 = String.valueOf(mStorageRef.getDownloadUrl());
                     User user = new User(uId, url3);
-                    mDatabaseRef.child("favorites").child(uId).child("images").setValue(user);
+                    mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
 
 
                 }
@@ -371,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bar_menu, menu);
-        download = (MenuItem) menu.findItem(R.id.downloadbutton);
+        download = menu.findItem(R.id.downloadbutton);
         if (isNetworkAvailable() == true) {
             download.setEnabled(false);
 
