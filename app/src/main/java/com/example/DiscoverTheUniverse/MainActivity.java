@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,11 +87,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private String imagedatesend;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
-    private FloatingActionButton addfavoritesbutton;
+    private ToggleButton addfavoritesbutton;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private String uid;
     private NetworkInfo activeNetwork;
+    private UploadTask muploadtask;
+    private Drawable d;
 
 
     @Override
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mStorageRef = FirebaseStorage.getInstance().getReference("favorites/");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
-
+        d = getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24);
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
         imageinfo = findViewById(R.id.infotv);
@@ -240,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         URL = image_url;
                         HDURL = image_hd_url;
 
+                        addfavoritesbutton.setChecked(false);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -298,23 +302,29 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         if (bmpUri != null) {
 
-            final StorageReference fileReference = mStorageRef.child(bmpUri.getLastPathSegment());
-            UploadTask uploadTask = mStorageRef.child(uid).child(imagedatesend + " " + '"' + imagetitlesend + '"').putFile(bmpUri);
 
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final StorageReference filereference = mStorageRef.child(uid).child(imagedatesend + " " + '"' + imagetitlesend + '"');
+
+            muploadtask = (UploadTask) filereference.putFile(bmpUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+                    filereference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            User user = new User(uId, uri.toString(), imagetitlesend);
+                            mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
 
+
+                        }
+                    });
                     taskSnapshot.getMetadata();
 
-                    String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    String url3 = String.valueOf(mStorageRef.getDownloadUrl());
-                    User user = new User(uId, url3);
-                    mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
 
-                
                 }
             });
+
+
         }
     }
 

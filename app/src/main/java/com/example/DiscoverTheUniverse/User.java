@@ -5,60 +5,80 @@ import android.net.Uri;
 
 public class User {
 
-    private String userName;
-    private String uId;
-    private String downloadurl;
-    private Uri bmpUri;
+    private String muserName;
+    private String muId;
+    private String mdownloadurl;
+    private Uri mbmpUri;
+    private String mimageTitle;
 
+    public User() {
 
-    public User(String uid, String userName, String downloadurl) {
+    }
 
+    public User(String uid, String downloadurl, String imageTitle) {
+        if (uid.trim().equals("")) {
+            uid = "No Name";
+
+        }
+        muId = uid;
+        mdownloadurl = downloadurl;
+        mimageTitle = imageTitle;
     }
 
     public User(String uid, String downloadurl) {
 
-        this.uId = uId;
-        this.downloadurl = downloadurl;
+        muId = uid;
+        mdownloadurl = downloadurl;
 
     }
 
-    public User(String uid, String userName, String downloadurl, Uri bmpUri) {
-        this.userName = userName;
-        this.uId = uId;
-        this.bmpUri = bmpUri;
-        this.downloadurl = downloadurl;
+
+    public User(String uid, String userName, String downloadurl, Uri bmpUri, String imageTitle) {
+        muserName = userName;
+        muId = uid;
+        mbmpUri = bmpUri;
+        mdownloadurl = downloadurl;
+        mimageTitle = imageTitle;
     }
 
     public String getDownloadurl() {
-        return downloadurl;
+        return mdownloadurl;
     }
 
     public void setDownloadurl(String downloadurl) {
-        this.downloadurl = downloadurl;
+        mdownloadurl = downloadurl;
     }
 
 
     public Uri getBmpUri() {
-        return bmpUri;
+        return mbmpUri;
     }
 
     public void setBmpUri(Uri bmpUri) {
-        this.bmpUri = bmpUri;
+        mbmpUri = bmpUri;
     }
 
     public String getuId() {
-        return uId;
+        return muId;
     }
 
     public void setuId(String uId) {
-        this.uId = uId;
+        muId = uId;
     }
 
     public String getUserName() {
-        return userName;
+        return muserName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        muserName = userName;
+    }
+
+    public String getMimageTitle() {
+        return mimageTitle;
+    }
+
+    public void setMimageTitle(String mimageTitle) {
+        this.mimageTitle = mimageTitle;
     }
 }
