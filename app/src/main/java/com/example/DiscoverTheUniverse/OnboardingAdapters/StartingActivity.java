@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.DiscoverTheUniverse.OnboardingAdapters;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,8 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.DiscoverTheUniverse.OnboardingAdapters.ScreenItem;
-import com.example.DiscoverTheUniverse.OnboardingAdapters.ViewPagerAdapter;
+import com.example.DiscoverTheUniverse.LoginActivity;
+import com.example.DiscoverTheUniverse.MainActivity;
+import com.example.DiscoverTheUniverse.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -46,7 +47,7 @@ public class StartingActivity extends AppCompatActivity {
         //List
         final List<ScreenItem> mList = new ArrayList<>();
         mList.add(new ScreenItem("Title", "description here...", R.drawable.nasaround));
-        mList.add(new ScreenItem("Title", "description here...", R.drawable.nasa_old));
+        mList.add(new ScreenItem("Title", "description here...", R.raw.nasa123));
 
         screenPager = findViewById(R.id.screen_viewpager);
         viewPagerAdapter = new ViewPagerAdapter(this, mList);
@@ -78,7 +79,9 @@ public class StartingActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition()==mList.size()-1){
                     loadLastScreen();
+
                 }
+
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
