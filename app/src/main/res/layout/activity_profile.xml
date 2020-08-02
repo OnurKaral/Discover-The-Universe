@@ -10,11 +10,17 @@
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/userNameTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp" />
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:paddingEnd="5dp"
+            android:textColorHint="#6200ee"
+            app:cornerRadius="5dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/changePasswordBttn"
@@ -50,15 +56,6 @@
             android:textColor="#FFFFFF"
             app:backgroundTint="#6200ee"
             app:cornerRadius="5dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/Geritusu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:backgroundTint="#6200ee"
-            app:srcCompat="@drawable/ic_home_black_24dp" />
-
 
     </LinearLayout>
 

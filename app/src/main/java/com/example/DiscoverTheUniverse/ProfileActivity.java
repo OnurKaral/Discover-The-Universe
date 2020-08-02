@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,13 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
     //XML bileşen tanımlama
-    private TextView userNameTxt;
+    private MaterialButton userNameTxt;
     private Button changeEmailBttn;
     private Button changePasswordBttn;
     private Button signOutBttn;
@@ -71,16 +71,6 @@ public class ProfileActivity extends AppCompatActivity {
         changeEmailBttn = findViewById(R.id.changeEmailBttn);
         changePasswordBttn = findViewById(R.id.changePasswordBttn);
         signOutBttn = findViewById(R.id.signOutBttn);
-        GeriTusu = findViewById(R.id.Geritusu);
-
-
-        GeriTusu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         userNameTxt.setText("Kullanıcı Adı:" + " " + auth.getCurrentUser().getEmail());
 
