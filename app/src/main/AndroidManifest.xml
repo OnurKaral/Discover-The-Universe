@@ -9,6 +9,7 @@
 
     <application
         android:allowBackup="true"
+        android:requestLegacyExternalStorage="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/yeniicon"
         android:label="Discover The Universe"
@@ -16,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FavoritesActivity"></activity>
+        <activity android:name=".FavoritesActivity" />
         <activity android:name=".NavigationUI.Info" />
         <activity android:name=".NavigationUI.EpicActivity" />
 

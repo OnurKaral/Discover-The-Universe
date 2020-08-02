@@ -23,11 +23,9 @@ import java.util.List;
 public class FavoritesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapter adapter;
-
     private FirebaseAuth auth;
     private FirebaseUser firebaseUser;
     private FirebaseAuth.AuthStateListener authListener;
-
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private List<User> mUsers;
@@ -72,10 +70,8 @@ public class FavoritesActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(FavoritesActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
-
             }
         });
-
 
     }
 }

@@ -47,14 +47,157 @@
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textbir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bir"
         android:layout_marginTop="10dp"
-        android:text="Reserve for Test - Coming Soon Reserve for Test - Coming Soon Reserve for Test - Coming Soon Reserve for Test - Coming Soon Reserve for Test - Coming Soon Reserve for Test - Coming Soon "
-        android:textSize="24sp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:text="@string/save_image"
+
+        android:textSize="16sp"
         android:textStyle="bold">
 
     </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textbirinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textbir"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/click_on_the_download_button_to_save_image_your_local"
+        android:textSize="12sp">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textbirinfo"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/share_image"
+        android:textSize="16sp"
+        android:textStyle="bold">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text2info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text2"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/click_on_the_share_button_to_share_images_via_social_media"
+        android:textSize="12sp">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text2info"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/add_favorites"
+        android:textSize="16sp"
+        android:textStyle="bold">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text3info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text3"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/you_can_click_the_heart_buttons_for_adding_images_to_your_favorites_page"
+        android:textSize="12sp">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text3info"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/upcoming_updates"
+        android:textSize="16sp"
+        android:textStyle="bold">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text4info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text4"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="28dp"
+        android:text="@string/you_can_look_at_upcoming_updates_from_the_navigation"
+        android:textSize="12sp">
+
+    </com.google.android.material.textview.MaterialTextView>
+
+    <TextView
+        android:id="@+id/baslik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
+        android:textSize="24sp"
+        android:text="@string/onur_karal"
+
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/baslik"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/computer_programmer"
+        android:textSize="12sp"
+
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="28dp"
+        android:lineSpacingExtra="8sp"
+
+        android:text="@string/hi_i_m_onur_in_addition_to_starting_my_software_career_i_am_looking_for_a_job_to_develop_myself_in_software_development_i_want_to_start_my_career_in_a_job_in_this_field_and_gain_experience_and_positively_affect_both_myself_and_the_team_i_am_currently_trying_to_improve_myself_in_android_development_also_i_work_in_various_libraries_and_material_design" />
+
 
 </RelativeLayout>

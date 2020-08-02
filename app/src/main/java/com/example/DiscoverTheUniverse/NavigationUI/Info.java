@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.DiscoverTheUniverse.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 public class Info extends AppCompatActivity {
 
     private FloatingActionButton button1;
@@ -20,7 +19,6 @@ public class Info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
-
 
         button1 = findViewById(R.id.bir);
         button2 = findViewById(R.id.iki);

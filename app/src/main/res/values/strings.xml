@@ -41,4 +41,15 @@
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
     <string name="near_earth_objects">Near Earth Objects:</string>
+    <string name="hi_i_m_onur_in_addition_to_starting_my_software_career_i_am_looking_for_a_job_to_develop_myself_in_software_development_i_want_to_start_my_career_in_a_job_in_this_field_and_gain_experience_and_positively_affect_both_myself_and_the_team_i_am_currently_trying_to_improve_myself_in_android_development_also_i_work_in_various_libraries_and_material_design">Hi, I\'m Onur. In addition to starting my software career, I am looking for a job to develop myself in software development. I want to start my career in a job in this field and gain experience and positively affect both myself and the team. I am currently trying to improve myself in android development. Also, I work in various libraries and material design.</string>
+    <string name="computer_programmer">Computer Programmer</string>
+    <string name="onur_karal">Onur Karal</string>
+    <string name="you_can_look_at_upcoming_updates_from_the_navigation">you can look at upcoming updates from the navigation.</string>
+    <string name="upcoming_updates">Upcoming Updates:</string>
+    <string name="you_can_click_the_heart_buttons_for_adding_images_to_your_favorites_page">You can click the heart buttons for adding images to your favorites page.</string>
+    <string name="add_favorites">Add Favorites:</string>
+    <string name="click_on_the_share_button_to_share_images_via_social_media">Click on the Share button to share images via social media.</string>
+    <string name="share_image">Share image:</string>
+    <string name="click_on_the_download_button_to_save_image_your_local">Click on the download button to save image your local.</string>
+    <string name="save_image">Save image:</string>
 </resources>

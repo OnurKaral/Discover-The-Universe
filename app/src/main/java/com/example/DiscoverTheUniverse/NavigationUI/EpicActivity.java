@@ -26,7 +26,6 @@ public class EpicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_epic);
 
         OkHttpClient client = new OkHttpClient();
-
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -47,11 +46,8 @@ public class EpicActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-
             }
         });
-
 
     }
 }

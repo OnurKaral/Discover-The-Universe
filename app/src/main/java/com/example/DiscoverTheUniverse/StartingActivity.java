@@ -78,9 +78,7 @@ public class StartingActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 if(tab.getPosition()==mList.size()-1){
                     loadLastScreen();
-
                 }
-
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {

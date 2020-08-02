@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private String userName;
     private String userPassword;
 
-
     //****************************************************************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        editTextUserName = (EditText) findViewById(R.id.editTextUserName);
-        editTextUserPassword = (EditText) findViewById(R.id.editTextUserPassword);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        txtRegister = (TextView) findViewById(R.id.txtRegister);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
-
+        editTextUserName = findViewById(R.id.editTextUserName);
+        editTextUserPassword = findViewById(R.id.editTextUserPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        txtRegister = findViewById(R.id.txtRegister);
+        relativeLayout = findViewById(R.id.relativeLayout);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
@@ -65,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         //Login İşlemi
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +100,5 @@ public class LoginActivity extends AppCompatActivity {
 
                 });
     }
-
 }
 

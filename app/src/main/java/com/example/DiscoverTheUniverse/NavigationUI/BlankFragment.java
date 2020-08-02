@@ -21,7 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 public class BlankFragment extends BottomSheetDialogFragment {
 
     public BlankFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -34,7 +34,6 @@ public class BlankFragment extends BottomSheetDialogFragment {
            @Override
            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-               //RESERVE
                switch (item.getItemId()) {
                    case R.id.asteroids_neows:
                        Intent intent = new Intent(getActivity().getApplication(), asteroids_neows.class);
@@ -54,9 +53,7 @@ public class BlankFragment extends BottomSheetDialogFragment {
                    case R.id.favorites:
                        Intent intent5 = new Intent(getActivity().getApplication(), FavoritesActivity.class);
                        startActivity(intent5);
-
                }
-
                return false;
            }
        });

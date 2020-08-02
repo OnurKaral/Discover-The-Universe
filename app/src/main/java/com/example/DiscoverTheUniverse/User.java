@@ -1,6 +1,5 @@
 package com.example.DiscoverTheUniverse;
 
-
 import android.net.Uri;
 
 public class User {
@@ -12,13 +11,11 @@ public class User {
     private String mimageTitle;
 
     public User() {
-
     }
 
     public User(String uid, String downloadurl, String imageTitle) {
         if (uid.trim().equals("")) {
             uid = "No Name";
-
         }
         muId = uid;
         mdownloadurl = downloadurl;
@@ -31,7 +28,6 @@ public class User {
         mdownloadurl = downloadurl;
 
     }
-
 
     public User(String uid, String userName, String downloadurl, Uri bmpUri, String imageTitle) {
         muserName = userName;

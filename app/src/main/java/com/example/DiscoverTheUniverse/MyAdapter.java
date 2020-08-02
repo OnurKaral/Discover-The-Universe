@@ -43,7 +43,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ImageViewHolder> {
         return mUser.size();
     }
 
-
     public class ImageViewHolder extends RecyclerView.ViewHolder {
 
         public TextView mtextView;
@@ -54,7 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ImageViewHolder> {
 
             mimageView = itemView.findViewById(R.id.card_imageview);
             mtextView = itemView.findViewById(R.id.card_textview);
-
 
         }
     }

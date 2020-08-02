@@ -1,6 +1,5 @@
 package com.example.DiscoverTheUniverse;
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-//****************************************************************************************************
 public class ProfileActivity extends AppCompatActivity {
     //XML bileşen tanımlama
     private TextView userNameTxt;
@@ -34,7 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseAuth.AuthStateListener authListener;
     private String str;
-
 
     @Override
     public void onStart() {
@@ -50,7 +47,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    //****************************************************************************************************
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +65,13 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
         };
+
         // Üyelik İşlemleri
-        userNameTxt = (TextView) findViewById(R.id.userNameTxt);
-        changeEmailBttn = (Button) findViewById(R.id.changeEmailBttn);
-        changePasswordBttn = (Button) findViewById(R.id.changePasswordBttn);
-        signOutBttn = (Button) findViewById(R.id.signOutBttn);
-        GeriTusu = (FloatingActionButton) findViewById(R.id.Geritusu);
+        userNameTxt = findViewById(R.id.userNameTxt);
+        changeEmailBttn = findViewById(R.id.changeEmailBttn);
+        changePasswordBttn = findViewById(R.id.changePasswordBttn);
+        signOutBttn = findViewById(R.id.signOutBttn);
+        GeriTusu = findViewById(R.id.Geritusu);
 
 
         GeriTusu.setOnClickListener(new View.OnClickListener() {

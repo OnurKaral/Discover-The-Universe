@@ -13,7 +13,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.DiscoverTheUniverse.R;
 
 import java.util.List;
-
 public class ViewPagerAdapter extends PagerAdapter {
     private Context mContext ;
     private List<ScreenItem> ListScreen;

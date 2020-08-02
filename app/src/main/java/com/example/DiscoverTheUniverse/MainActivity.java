@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private BottomAppBar bottomAppBar;
     private FloatingActionButton floatingActionButton;
     private MaterialButton videobutton;
-
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String urldate;
@@ -95,21 +94,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private UploadTask muploadtask;
     private Drawable d;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         uid = firebaseUser.getUid();
-
         mStorageRef = FirebaseStorage.getInstance().getReference("favorites/");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
         d = getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24);
+
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
         imageinfo = findViewById(R.id.infotv);
@@ -122,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         urldate = dateFormat.format(calendar.getTime());
-
 
         bottomAppBar = findViewById(R.id.bar);
         setSupportActionBar(bottomAppBar);
@@ -149,7 +145,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 addfavorites();
             }
         });
-
         requestQueue = Volley.newRequestQueue(this);
         jsonParse();
 
@@ -167,10 +162,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 DatePicker.show(getSupportFragmentManager(), "DatePicker");
             }
         });
-
-
     }
-
 
     //***JsonParse!
     public void jsonParse() {
@@ -179,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onResponse(JSONObject response) {
                 if (isNetworkAvailable() == true) {
-
 
                     download.setEnabled(true);
                     try {
@@ -220,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                         imageView.setVisibility(View.VISIBLE);
                         videobutton.setVisibility(View.INVISIBLE);
-
 
                         if (image_type.equals("video")) {
                             download.setVisible(false);
@@ -279,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         } else {
             return null;
         }
-        // Store image to default external storage directory
 
         try {
             File file = new File(Environment.getExternalStoragePublicDirectory(
@@ -289,7 +278,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.close();
             bmpUri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".provider", file);
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -315,16 +303,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             User user = new User(uId, uri.toString(), imagetitlesend);
                             mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
 
-
                         }
                     });
                     taskSnapshot.getMetadata();
 
-
                 }
             });
+            addfavoritesbutton.setEnabled(false);
 
-
+        } else {
+            requestStoragePermission();
         }
     }
 
@@ -344,7 +332,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     snackbar.show();
                 } else {
                     requestStoragePermission();
-
                 }
                 break;
             case R.id.sendbutton:
@@ -427,7 +414,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = manager.getActiveNetworkInfo();
 
-
     }
 
     @Override
@@ -445,7 +431,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
-
 }
 
 
