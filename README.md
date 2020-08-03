@@ -1,6 +1,6 @@
 # Discover The Universe! 🪐
 
-🪐 Generic CLI tool to automate versioning and package publishing related tasks:
+🪐 NASA-APOD is an Android app that using different NASA API's.
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/93b8937aacb24157b4e17e37274b23df)](https://www.codacy.com/manual/santobixua/NASA-APOD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
