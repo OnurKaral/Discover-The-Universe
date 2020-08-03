@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         HDURL = image_hd_url;
 
                         addfavoritesbutton.setChecked(false);
-
+                        addfavoritesbutton.setEnabled(true);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
