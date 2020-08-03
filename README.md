@@ -4,7 +4,7 @@
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/93b8937aacb24157b4e17e37274b23df)](https://www.codacy.com/manual/santobixua/NASA-APOD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
-(https://img.shields.io/github/release-date/OnurKaral/NASA-APOD)
+[![GitHub release](https://img.shields.io/github/release-date/OnurKaral/NASA-APOD)
 
 <a href="" target="_blank">
 <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a>
@@ -13,8 +13,10 @@
 
 ## Features
 
-- See [CHANGELOG.md](./CHANGELOG.md) for major/breaking updates, and
+- S
   [releases](https://github.com/release-it/release-it/releases) for a detailed version history.
 - To **contribute**, please read [CONTRIBUTING.md](./CONTRIBUTING.md) first.
 - Please [open an issue](https://github.com/release-it/release-it/issues/new) if anything is missing or unclear in this
   documentation.
+  
+  
