@@ -4,7 +4,7 @@
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/93b8937aacb24157b4e17e37274b23df)](https://www.codacy.com/manual/santobixua/NASA-APOD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
-[![GitHub release](https://img.shields.io/github/release/federicoiosue/omni-notes.svg)](https://img.shields.io/github/release-date/OnurKaral/NASA-APOD)
+[![GitHub release]
 
 <a href="" target="_blank">
 <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a>
