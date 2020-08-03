@@ -3,7 +3,7 @@
 🪐 Generic CLI tool to automate versioning and package publishing related tasks:
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8ade707d00ef468fa79d3f6b622444b5)](https://www.codacy.com/app/federico-iosue/Omni-Notes?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=federicoiosue/Omni-Notes&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/93b8937aacb24157b4e17e37274b23df)](https://www.codacy.com/manual/santobixua/NASA-APOD?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
 [![GitHub release](https://img.shields.io/github/release/federicoiosue/omni-notes.svg)](https://github.com/federicoiosue/Omni-Notes/releases/latest)
 
 <a href="" target="_blank">
