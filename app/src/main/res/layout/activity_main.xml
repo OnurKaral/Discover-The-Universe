@@ -25,30 +25,12 @@
           android:layout_marginTop="3dp" />
 
 
-      <ToggleButton
-          android:id="@+id/addfavorites"
-          android:layout_width="25dp"
-          android:layout_height="25dp"
-          android:layout_above="@+id/titletv"
-          android:layout_alignParentEnd="true"
-          android:layout_marginRight="24dp"
-          android:background="@drawable/selector"
-          android:textOff=""
-          android:textOn=""
-
-
-          >
-
-      </ToggleButton>
-
-
       <ImageView
           android:id="@+id/image_view2"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_marginTop="3dp"
           android:visibility="invisible" />
-
 
       <com.google.android.material.button.MaterialButton
           android:layout_width="wrap_content"
@@ -60,57 +42,67 @@
           android:visibility="invisible"
           android:id="@+id/mvideobutton">
 
-
       </com.google.android.material.button.MaterialButton>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image_view"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/titletv"
-        android:layout_marginTop="2dp"
-        android:textColor="#6200ee"
-        android:textSize="16sp"
-        android:textStyle="bold"></TextView>
+      <ToggleButton
+          android:id="@+id/addfavorites"
+          android:layout_width="25dp"
+          android:layout_height="25dp"
+          android:layout_below="@id/image_view"
+          android:layout_alignEnd="@+id/titletv"
+          android:layout_alignParentEnd="true"
+          android:background="@drawable/selector"
+          android:textOff=""
+          android:textOn="">
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/titletv"
-      android:layout_marginLeft="10dp"
-      android:id="@+id/infotv"
-      android:textColor="#1b1b1b"
-      android:textSize="13sp">
-  </TextView>
+      </ToggleButton>
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/infotv"
-      android:layout_marginLeft="10dp"
-      android:layout_marginTop="2dp"
-      android:id="@+id/datetv"
-      android:textColor="#1b1b1b"
-      android:textSize="12sp"
-      android:textStyle="bold">
-  </TextView>
+      <TextView
+          android:id="@+id/titletv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/image_view"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="2dp"
+          android:textColor="#6200ee"
+          android:textSize="16sp"
+          android:textStyle="bold" />
+
+      <TextView
+          android:id="@+id/infotv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/titletv"
+          android:layout_marginLeft="10dp"
+          android:textColor="#1b1b1b"
+          android:textSize="13sp"></TextView>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/infotv"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="2dp"
+          android:id="@+id/datetv"
+          android:textColor="#1b1b1b"
+          android:textSize="12sp"
+          android:textStyle="bold"></TextView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
 
-        android:layout_below="@id/datetv"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="2dp"
-        android:text="TEST"
+          android:layout_below="@id/datetv"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="2dp"
+          android:text="TEST"
 
-        android:textColor="#1b1b1b"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        tools:visibility="invisible"></TextView>
+          android:textColor="#1b1b1b"
+          android:textSize="50sp"
+          android:textStyle="bold"
+          android:visibility="invisible"
+          tools:visibility="invisible" />
 
   </RelativeLayout>
 
