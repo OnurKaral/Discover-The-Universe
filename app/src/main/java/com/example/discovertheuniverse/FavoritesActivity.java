@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +22,6 @@ import java.util.List;
 public class FavoritesActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MyAdapter adapter;
-    private FirebaseAuth auth;
-    private FirebaseUser firebaseUser;
-    private FirebaseAuth.AuthStateListener authListener;
-    private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private List<User> mUsers;
 
@@ -36,10 +31,9 @@ public class FavoritesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorites);
 
         //Kullanıcıyı Çağırma
-        auth = FirebaseAuth.getInstance();
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        authListener = new FirebaseAuth.AuthStateListener() {
+        FirebaseAuth.AuthStateListener authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();

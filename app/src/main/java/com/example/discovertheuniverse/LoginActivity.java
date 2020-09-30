@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 //****************************************************************************************************
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    RelativeLayout relativeLayout;
     //XML bileşen tanımlama
     private EditText editTextUserName;
     private EditText editTextUserPassword;
@@ -44,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         editTextUserPassword = findViewById(R.id.editTextUserPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         txtRegister = findViewById(R.id.txtRegister);
-        relativeLayout = findViewById(R.id.relativeLayout);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();

@@ -87,25 +87,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private ToggleButton addfavoritesbutton;
-    private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private String uid;
-    private NetworkInfo activeNetwork;
-    private UploadTask muploadtask;
-    private Drawable d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         uid = firebaseUser.getUid();
         mStorageRef = FirebaseStorage.getInstance().getReference("favorites/");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference();
 
-        d = getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24);
+        Drawable d = getResources().getDrawable(R.drawable.ic_baseline_favorite_border_24);
 
         imagetitle = findViewById(R.id.titletv);
         imageView = findViewById(R.id.image_view);
@@ -154,9 +150,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                cal.get(Calendar.YEAR);
+                cal.get(Calendar.MONTH);
+                cal.get(Calendar.DAY_OF_MONTH);
 
                 DialogFragment DatePicker = new DatePickerFragment();
                 DatePicker.show(getSupportFragmentManager(), "DatePicker");
@@ -206,7 +202,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                             @Override
                             public void onError(Exception e) {
+                                //Error
                             }
+
                         });
 
                         imageView.setVisibility(View.VISIBLE);
@@ -293,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
             final StorageReference filereference = mStorageRef.child(uid).child(imagedatesend + " " + '"' + imagetitlesend + '"');
 
-            muploadtask = (UploadTask) filereference.putFile(bmpUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            UploadTask muploadtask = (UploadTask) filereference.putFile(bmpUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
                     filereference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -358,6 +356,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     requestStoragePermission();
                 }
                 break;
+            default:
+
         }
         return true;
     }
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void checkConnection() {
 
         ConnectivityManager manager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        activeNetwork = manager.getActiveNetworkInfo();
+        NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
 
     }
 

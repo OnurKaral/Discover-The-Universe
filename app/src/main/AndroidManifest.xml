@@ -26,7 +26,7 @@
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_name" />
 
-        <activity android:name="com.example.discovertheuniverse.NavigationUI.asteroids_neows" />
+        <activity android:name="com.example.discovertheuniverse.NavigationUI.asteroids_neo" />
         <activity android:name="com.example.discovertheuniverse.MainActivity" />
         <activity android:name="com.example.discovertheuniverse.LoginActivity" />
         <activity android:name="com.example.discovertheuniverse.ProfileActivity" />

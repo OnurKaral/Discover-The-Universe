@@ -36,7 +36,7 @@ public class BlankFragment extends BottomSheetDialogFragment {
 
                switch (item.getItemId()) {
                    case R.id.asteroids_neows:
-                       Intent intent = new Intent(getActivity().getApplication(), asteroids_neows.class);
+                       Intent intent = new Intent(getActivity().getApplication(), asteroids_neo.class);
                        startActivity(intent);
                        break;
 

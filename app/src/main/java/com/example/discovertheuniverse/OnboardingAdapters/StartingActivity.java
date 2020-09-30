@@ -26,7 +26,7 @@ public class StartingActivity extends AppCompatActivity {
     private MaterialButton button_next;
     private MaterialButton button_start;
 
-    int position =0;
+    private int position = 0;
     TextView tvSkip;
 
     @Override
@@ -89,7 +89,7 @@ public class StartingActivity extends AppCompatActivity {
             }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                //TabReselected
             }
         });
         //GetStarted

@@ -16,7 +16,7 @@ import com.example.discovertheuniverse.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class asteroids_neows extends AppCompatActivity {
+public class asteroids_neo extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String nearobjects;
     private TextView mAsteroidstw;
