@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.DiscoverTheUniverse.NavigationUI.Info">
+    tools:context="com.example.discovertheuniverse.NavigationUI.Info">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bir"

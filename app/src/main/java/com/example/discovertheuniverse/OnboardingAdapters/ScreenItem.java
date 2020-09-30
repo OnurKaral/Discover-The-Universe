@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse.OnboardingAdapters;
+package com.example.discovertheuniverse.OnboardingAdapters;
 
 public class ScreenItem {
 

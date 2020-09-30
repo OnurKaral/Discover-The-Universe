@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.discovertheuniverse;
 
 
 import android.content.Context;

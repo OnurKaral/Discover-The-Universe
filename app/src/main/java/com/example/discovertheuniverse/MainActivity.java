@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse;
+package com.example.discovertheuniverse;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -37,7 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.DiscoverTheUniverse.NavigationUI.BlankFragment;
+import com.example.discovertheuniverse.NavigationUI.BlankFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.button.MaterialButton;

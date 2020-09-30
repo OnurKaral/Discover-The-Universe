@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse.OnboardingAdapters;
+package com.example.discovertheuniverse.OnboardingAdapters;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.DiscoverTheUniverse.LoginActivity;
-import com.example.DiscoverTheUniverse.MainActivity;
-import com.example.DiscoverTheUniverse.R;
+import com.example.discovertheuniverse.LoginActivity;
+import com.example.discovertheuniverse.MainActivity;
+import com.example.discovertheuniverse.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 

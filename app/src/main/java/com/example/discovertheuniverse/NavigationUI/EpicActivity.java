@@ -1,10 +1,10 @@
-package com.example.DiscoverTheUniverse.NavigationUI;
+package com.example.discovertheuniverse.NavigationUI;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.DiscoverTheUniverse.R;
+import com.example.discovertheuniverse.R;
 
 import org.jetbrains.annotations.NotNull;
 

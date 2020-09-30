@@ -1,4 +1,4 @@
-package com.example.DiscoverTheUniverse.NavigationUI;
+package com.example.discovertheuniverse.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.DiscoverTheUniverse.FavoritesActivity;
-import com.example.DiscoverTheUniverse.ProfileActivity;
-import com.example.DiscoverTheUniverse.R;
+import com.example.discovertheuniverse.FavoritesActivity;
+import com.example.discovertheuniverse.ProfileActivity;
+import com.example.discovertheuniverse.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 /**
