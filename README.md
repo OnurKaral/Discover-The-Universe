@@ -4,6 +4,7 @@
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/11168034aab9407189b58568fdfe0995)](https://www.codacy.com/gh/OnurKaral/NASA-APOD/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
+
 <a href="" target="_blank">
   <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="90"/></a> 
 <a href="" target="_blank">
