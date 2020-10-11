@@ -1,6 +1,7 @@
 package com.example.discovertheuniverse;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -90,10 +91,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private FirebaseUser firebaseUser;
     private String uid;
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -431,6 +434,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
 }
 
 
