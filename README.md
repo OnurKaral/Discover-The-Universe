@@ -10,8 +10,8 @@
 <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/00.png" alt="Screenshot 0" height="200"> <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/01.png" alt="Screenshot 1" height="200"> <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/02.png" alt="Screenshot 2" height="200"> <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/03.png" alt="Screenshot 3" height="200"> <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/04.png" alt="Screenshot 4" height="200"> <img src="https://raw.githubusercontent.com/AntennaPod/AntennaPod/develop/app/src/main/play/listings/en-US/graphics/phone-screenshots/05.png" alt="Screenshot 5" height="200">
 
 ![SLicense](https://img.shields.io/github/license/OnurKaral/NASA-APOD)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/11168034aab9407189b58568fdfe0995)](https://www.codacy.com/gh/OnurKaral/NASA-APOD/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
-[![GitHub release](https://img.shields.io/github/v/release/OnurKaral/Discover-The-Universe)
+![Codacy Badge](https://app.codacy.com/project/badge/Grade/11168034aab9407189b58568fdfe0995)](https://www.codacy.com/gh/OnurKaral/NASA-APOD/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=OnurKaral/NASA-APOD&amp;utm_campaign=Badge_Grade)
+![GitHub release](https://img.shields.io/github/v/release/OnurKaral/Discover-The-Universe)
 
 ## Features
 
