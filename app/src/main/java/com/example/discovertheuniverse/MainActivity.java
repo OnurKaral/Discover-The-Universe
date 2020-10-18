@@ -302,7 +302,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         public void onSuccess(Uri uri) {
                             String uId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                             User user = new User(uId, uri.toString(), imagetitlesend);
-                            mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
+                            if (mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user) ==null){
+                                Snackbar snackbar = Snackbar.make(imagedate, "hata ", Snackbar.LENGTH_LONG);
+                                snackbar.setAnchorView(floatingActionButton);
+                                snackbar.show();
+                            }
+                                mDatabaseRef.child("favorites").child(uId).child(imagedatesend + " " + '"' + imagetitlesend + '"').setValue(user);
+                                Snackbar snackbar = Snackbar.make(imagedate, "Image added your favorites.", Snackbar.LENGTH_LONG);
+                                snackbar.setAnchorView(floatingActionButton);
+                                snackbar.show();
+
+
 
                         }
                     });
